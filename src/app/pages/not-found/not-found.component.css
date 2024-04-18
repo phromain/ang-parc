@@ -1,0 +1,10 @@
+#error {
+  background-image: url('../../../assets/img/error.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+body {
+  height: 100vh;
+}

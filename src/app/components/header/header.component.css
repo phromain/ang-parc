@@ -1,0 +1,63 @@
+
+@font-face {
+  font-family: "GeminiMoon";
+  src: url("../../../assets/fonts/GeminiMoon.otf")
+}
+
+h1{
+  padding-left: 18vh;
+  background: -webkit-linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #e8f077);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "GeminiMoon";
+
+}
+
+
+.hrule
+{
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #e8f077);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 40px;
+  width: 100%;
+  margin-top: 1rem !important;
+
+}
+
+@keyframes gradient
+{
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.logo {
+  margin-top: 4px 4px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  -webkit-animation:spin 8s linear infinite;
+  -moz-animation:spin 8s linear infinite;
+  animation:spin 8s linear infinite;
+}
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform:rotate(360deg);
+  }
+}

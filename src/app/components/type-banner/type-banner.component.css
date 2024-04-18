@@ -1,0 +1,16 @@
+.w10r {
+  width: 10rem;
+}
+
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  -webkit-text-stroke: 0.4px;
+  -webkit-text-stroke-color:rgb(0, 0, 0);
+
+}

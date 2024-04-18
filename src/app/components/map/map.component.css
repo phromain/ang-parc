@@ -1,0 +1,7 @@
+
+
+
+.map{display:flex;margin:2rem auto;max-width:500px}
+.svgtip{max-width:100px;--mini:14;--maxi:16}
+.map path{transition:.6s fill;fill:#7d68e8;stroke:white;stroke-width:1}
+.map path:hover{cursor:pointer;fill:#eee}
