@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="container mb-5 mt-5">
+  <form [formGroup]="formPin" (ngSubmit)="onSubmit()">
+<div class="container text-center">
+  <H2> Double Authentification</H2>
+  <div class="row justify-content-center">
+    <div class=" col-4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title class="text-white">Code PIN</mat-card-title>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <input type="number" id="number1" formControlName="number1" (keyup)="moveFocus($event, 'number2')" maxlength="1">
+          <input type="number" id="number2" formControlName="number2" (keyup)="moveFocus($event, 'number3')" maxlength="1">
+          <input type="number" id="number3" formControlName="number3" (keyup)="moveFocus($event, 'number4')" maxlength="1">
+          <input type="number" id="number4" formControlName="number4" (keyup)="moveFocus($event, 'submit')" maxlength="1">
+        </mat-card-content>
+      </mat-card>
+        <p class="text-bg-warning">Un e-mail avec un code PIN vous a été envoyé, vous avez 3 minutes pour le saisir.</p>
+
+      <div class="col mt-2">
+        <c-alert color="danger" *ngIf="submitted && errorMessage">
+          {{ errorMessage }}
+        </c-alert>
+        <c-alert color="danger" *ngIf="errorPin">
+          <p>
+            Code PIN erroné.
+          </p>
+        </c-alert>
+
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" id="submit" class="mt-5" mat-raised-button color="accent">Valide</button>
+</div>
+</form>
+</div>
+<app-footer></app-footer>
