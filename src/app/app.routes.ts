@@ -6,6 +6,7 @@ import {ForgotUsernameComponent} from "./pages/forgot-username/forgot-username.c
 import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PinComponent} from "./pages/pin/pin.component";
+import {SideBarResearchComponent} from "./components/side-bar-research/side-bar-research.component";
 
 export const routes: Routes = [
 
@@ -15,6 +16,8 @@ export const routes: Routes = [
   {path: 'connexion/password-perdu', component: ForgotPasswordComponent },
   {path: 'connexion/pin', component: PinComponent },
   {path: 'dashboard', component: DashboardComponent },
+  {path: 'side', component: SideBarResearchComponent },
+
 
 
 
