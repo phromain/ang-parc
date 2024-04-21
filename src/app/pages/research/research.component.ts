@@ -4,6 +4,7 @@ import {HeaderComponent} from "../../components/template/header/header.component
 import {FooterComponent} from "../../components/template/footer/footer.component";
 import {SideBarResearchComponent} from "../../components/side-bar-research/side-bar-research.component";
 import {ListCardsParcComponent} from "../../components/list-cards-parc/list-cards-parc.component";
+import {SearchBannerComponent} from "../../components/search-banner/search-banner.component";
 @Component({
   selector: 'app-research',
   standalone: true,
@@ -16,7 +17,8 @@ import {ListCardsParcComponent} from "../../components/list-cards-parc/list-card
     MatCardTitleGroup,
     MatCard,
     SideBarResearchComponent,
-    ListCardsParcComponent
+    ListCardsParcComponent,
+    SearchBannerComponent
   ],
   templateUrl: './research.component.html',
   styleUrl: './research.component.css'
