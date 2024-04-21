@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: "GeminiMoon";
-  src: url("../../../assets/fonts/GeminiMoon.otf")
+  src: url("../../../../assets/fonts/GeminiMoon.otf")
 }
 
 h1{
@@ -43,8 +43,6 @@ h1{
 .logo {
   margin-top: 4px 4px;
   position: absolute;
-  width: 100px;
-  height: 100px;
   -webkit-animation:spin 8s linear infinite;
   -moz-animation:spin 8s linear infinite;
   animation:spin 8s linear infinite;

@@ -9,11 +9,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButton} from "@angular/material/button";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
-import {AlertComponent} from "@coreui/angular";
+import {AlertComponent,} from "@coreui/angular";
 import {NgIf} from "@angular/common";
 import {AuthService} from "../../services/auth.service";
-import {HeaderComponent} from "../../components/header/header.component";
-import {FooterComponent} from "../../components/footer/footer.component";
+import {HeaderComponent} from "../../components/template/header/header.component";
+import {FooterComponent} from "../../components/template/footer/footer.component";
+
 
 
 @Component({

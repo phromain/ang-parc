@@ -1,1 +1,7 @@
-<p>list-region works!</p>
+<mat-form-field>
+  <mat-label>Région :</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let region of regions" [value]="region.id">{{region.nomRegion}}</mat-option>
+  </mat-select>
+</mat-form-field>
+

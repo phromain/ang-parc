@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import {HeaderComponent} from "../../components/header/header.component";
-import {FooterComponent} from "../../components/footer/footer.component";
 import {SearchBannerComponent} from "../../components/search-banner/search-banner.component";
 import {MapComponent} from "../../components/map/map.component";
 import {TypeBannerComponent} from "../../components/type-banner/type-banner.component";
-
+import {HeaderComponent} from "../../components/template/header/header.component";
+import {FooterComponent} from "../../components/template/footer/footer.component";
 @Component({
   selector: 'app-home',
   standalone: true,

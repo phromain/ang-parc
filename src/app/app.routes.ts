@@ -7,6 +7,7 @@ import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.c
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PinComponent} from "./pages/pin/pin.component";
 import {SideBarResearchComponent} from "./components/side-bar-research/side-bar-research.component";
+import {ListCardsParcComponent} from "./components/list-cards-parc/list-cards-parc.component";
 
 export const routes: Routes = [
 
@@ -17,9 +18,7 @@ export const routes: Routes = [
   {path: 'connexion/pin', component: PinComponent },
   {path: 'dashboard', component: DashboardComponent },
   {path: 'side', component: SideBarResearchComponent },
-
-
-
+  {path: 'card', component: ListCardsParcComponent },
 
 
 

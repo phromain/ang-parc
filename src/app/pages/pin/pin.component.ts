@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
-import {AlertComponent, FormDirective} from "@coreui/angular";
+import {AlertComponent, FormDirective,} from "@coreui/angular";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {Router, RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {HeaderComponent} from "../../components/header/header.component";
-import {FooterComponent} from "../../components/footer/footer.component";
 import {AuthService} from "../../services/auth.service";
+import {HeaderComponent} from "../../components/template/header/header.component";
+import {FooterComponent} from "../../components/template/footer/footer.component";
 @Component({
   selector: 'app-pin',
   standalone: true,
