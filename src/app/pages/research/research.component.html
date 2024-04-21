@@ -1,15 +1,17 @@
 <app-header></app-header>
 
 
-<div class='row justify-content-start'>
-
-  <div class="col-12">
-    <div class="row justify-content-center ">
-
-
+<div class="container">
+  <div class="row">
+    <div class="d-flex">
+      <div id="sidebar" class="col-2 position-fixed vh-100">
+        <app-side-bar-research></app-side-bar-research>
+      </div>
+      <div id="main" class="col-9 offset-3 flex-grow-1 p-3">
+        <app-list-cards-parc></app-list-cards-parc>
+      </div>
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>
