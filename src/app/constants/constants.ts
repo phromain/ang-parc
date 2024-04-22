@@ -6,6 +6,7 @@ export const endpoint = {
     listParcs: `${apiUrl}/parcs`,
     listRegions: `${apiUrl}/regions`,
     listTypes: `${apiUrl}/types`,
+    detailParc: `${apiUrl}/parcs`,
   },
 };
 

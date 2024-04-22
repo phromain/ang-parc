@@ -5,11 +5,12 @@ import {NgForOf} from "@angular/common";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {ParcFilterService} from "../../services/parc-filter.service";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-list-cards-parc',
   standalone: true,
-  imports: [MatCardModule, NgForOf,MatButtonModule, MatIconModule],
+  imports: [MatCardModule, NgForOf, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './list-cards-parc.component.html',
   styleUrl: './list-cards-parc.component.css'
 })

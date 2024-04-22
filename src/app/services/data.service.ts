@@ -21,5 +21,8 @@ export class DataService {
   getRegions(): Observable<any> {
     return this.http.get(endpoint.api.listRegions);
   }
+  getDetailParc(slugParc: string): Observable<any> {
+    return this.http.get(`${endpoint.api.detailParc}/${slugParc}`);
+  }
 
 }

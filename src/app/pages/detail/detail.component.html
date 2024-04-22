@@ -1,1 +1,80 @@
-<p>detail works!</p>
+<div class="container-fluid">
+  <app-header></app-header>
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-6 mt-5 mb-5" style="width: 60vh;">
+        <a><img src="{{parc.urlImgParcPrez}}" class="card-img-top img-fluid" alt="Img prez "></a>
+        <a href="" target="_blank"><button type="button" class="offset-md-3 btn btn-danger btnhover mt-4">Achetez vos places</button></a>
+      </div>
+
+      <div class="col-6 mt-5 mb-5  ">
+        <h2 class=" mb-5 text-center "> </h2>
+        <p></p>
+
+        <div class="col mt-5  ">
+         <!-- <h3>Contact</h3>
+          <p *ngIf="siteInternet">Site Internet : <a href="{{siteInternet}}"target="_blank" >{{siteInternet}}</a> </p>
+          <p *ngIf="url_reseau0">{{id_reseau0 | titlecase }} : <a href="{{url_reseau0}}"target="_blank" >{{url_reseau0}}</a>  </p>
+          <p *ngIf="url_reseau1">{{id_reseau1 | titlecase }} : <a href="{{url_reseau1}}"target="_blank" >{{url_reseau1}}</a> </p>
+          <p *ngIf="url_reseau2">{{id_reseau2 | titlecase }} : <a href="{{url_reseau2}}"target="_blank" >{{url_reseau2}}</a> </p>
+-->
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row justify-content-around  p-5">
+      <div class="col-5   ">
+        <h3>Tarifs</h3>
+        <p>Prix Adulte : €</p>
+        <p>Prix Enfant : €</p>
+        <p> </p>
+        <P>Parking : </P>
+
+      </div>
+
+
+      <div class="col-5  ">
+        <div class="row">
+          <h3>Localisation</h3>
+          <div class="col  ">
+            <p>Adresse : </p>
+            <p>Ville: </p>
+            <p>Code Postal: </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-5  mt-5  ">
+        <h3>Horaires</h3>
+        <p>Horaire d'ouverture :  </p>
+        <p>Horaire de fermeture : </p>
+        <p>Calendrier du Parc : <a href="" target="_blank">Cliquez ici</a></p>
+
+
+      </div>
+
+      <div class="col-5  mt-5  ">
+        <h3>Informations Parc</h3>
+        <p>Boutique : </p>
+        <p>Point de restauration : </p>
+        <p>Possibilité de Séjour : </p>
+
+
+      </div>
+
+      <div class="col-12  mt-5  ">
+        <h3>Plan du Parc</h3>
+        <a><img src="" class="card-img-top img-fluid" alt=""></a>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <app-footer></app-footer>
+</div>
+
