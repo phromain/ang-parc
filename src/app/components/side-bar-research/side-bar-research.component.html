@@ -1,11 +1,12 @@
-<form>
+<form [formGroup]="sideBarForm">
+  <div class="mt-3">
   <mat-form-field>
     <mat-label>Recherche par nom :</mat-label>
-    <input matInput placeholder="Nom du parc" value="">
+    <input matInput placeholder="Nom du parc" formControlName="nomParc">
   </mat-form-field>
+</div>
 
-
-  <section  [formGroup]="typeParc">
+  <section>
     <h4>Type :</h4>
     <mat-checkbox formControlName="attraction">Attraction</mat-checkbox>
     <mat-checkbox formControlName="aquatique">Aquatique</mat-checkbox>
@@ -13,72 +14,17 @@
     <mat-checkbox formControlName="zoo">Animalier</mat-checkbox>
   </section>
 
-  <app-list-region> </app-list-region>
+  <app-list-region [formRegion]="sideBarForm"></app-list-region>
+
   <section>
     <h4>Parking :</h4>
-    <mat-checkbox class="example-margin">Gratuit</mat-checkbox>
+    <mat-checkbox formControlName="parkingGratuit">Gratuit</mat-checkbox>
   </section>
 
   <section>
     <h4>Divers :</h4>
-    <mat-checkbox>Restaurant</mat-checkbox>
-    <mat-checkbox>Boutique</mat-checkbox>
-    <mat-checkbox>Séjour</mat-checkbox>
+    <mat-checkbox formControlName="restauration">Restaurant</mat-checkbox>
+    <mat-checkbox formControlName="boutique">Boutique</mat-checkbox>
+    <mat-checkbox formControlName="sejour">Séjour</mat-checkbox>
   </section>
 </form>
-<!--<div>
-  <h5 class="mt-5">Recherche :</h5>
-  <p:inputText id="parcName" placeholder="Nom du parc" value="#{parcBean.parcSearch.textfield}">
-    <p:ajax event="keyup" listener="#{parcBean.textfieldChanged}" delay="1000" update=":mainForm:products"/>
-  </p:inputText>
-
-  <h5 class="mt-3">Type :</h5>
-  <p:selectBooleanCheckbox value="#{parcBean.attractionChecked}" itemLabel="Attraction" styleClass="d-block">
-    <f:ajax listener="#{parcBean.attraction}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-  <p:selectBooleanCheckbox value="#{parcBean.aquatiqueChecked}" itemLabel="Aquatique" styleClass="d-block">
-    <f:ajax listener="#{parcBean.aquatique}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-  <p:selectBooleanCheckbox value="#{parcBean.spectacleChecked}" itemLabel="Spectacle" styleClass="d-block">
-    <f:ajax listener="#{parcBean.spectacle}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-  <p:selectBooleanCheckbox value="#{parcBean.animalierChecked}" itemLabel="Animalier" styleClass="d-block">
-    <f:ajax listener="#{parcBean.zoo}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-
-
-  <h5 class="mt-3">Region:</h5>
-  <p:selectOneMenu id="regionParc" value="#{parcBean.regionSelected}">
-    <f:ajax listener="#{parcBean.regionParcChanged}"
-            render=":mainForm:products"/>
-    <f:selectItems value="#{parcBean.allRegions}"/>
-    <f:converter converterId="regionConverter"/>
-  </p:selectOneMenu>
-
-  <h5 class="mt-3">Parking :</h5>
-  <p:selectBooleanCheckbox value="#{parcBean.parkingGratuitChecked}" itemLabel="Gratuit">
-    <f:ajax listener="#{parcBean.parkingGratuitChanged}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-
-  <h5 class="mt-3">Divers :</h5>
-  <p:selectBooleanCheckbox value="#{parcBean.restaurantChecked}" itemLabel="Restaurant">
-    <f:ajax listener="#{parcBean.restaurantChanged}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-
-
-  <p:selectBooleanCheckbox value="#{parcBean.boutiqueChecked}" itemLabel="Boutique">
-    <f:ajax listener="#{parcBean.boutiqueChanged}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-
-  <p:selectBooleanCheckbox id="sejourChecked" value="#{parcBean.sejourChecked}" itemLabel="Séjour">
-    <f:ajax listener="#{parcBean.sejourChanged}"
-            render=":mainForm:products"/>
-  </p:selectBooleanCheckbox>
-</div> -->

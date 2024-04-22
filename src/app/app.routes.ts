@@ -9,6 +9,7 @@ import {PinComponent} from "./pages/pin/pin.component";
 import {SideBarResearchComponent} from "./components/side-bar-research/side-bar-research.component";
 import {ListCardsParcComponent} from "./components/list-cards-parc/list-cards-parc.component";
 import {ResearchComponent} from "./pages/research/research.component";
+import {ListRegionComponent} from "./components/list-region/list-region.component";
 
 export const routes: Routes = [
 
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {path: 'recherche', component: ResearchComponent },
   {path: 'side', component: SideBarResearchComponent },
   {path: 'card', component: ListCardsParcComponent },
+  {path: 'region', component: ListRegionComponent },
 
 
 
