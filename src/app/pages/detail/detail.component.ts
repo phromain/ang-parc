@@ -6,6 +6,10 @@ import {SideBarResearchComponent} from "../../components/side-bar-research/side-
 import {DataService} from "../../services/data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgForOf, NgIf, TitleCasePipe} from "@angular/common";
+import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-detail',
@@ -17,7 +21,10 @@ import {NgForOf, NgIf, TitleCasePipe} from "@angular/common";
     SideBarResearchComponent,
     NgIf,
     TitleCasePipe,
-    NgForOf
+    NgForOf,
+    MatButton,
+    MatIcon,
+    MatButtonModule
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css'

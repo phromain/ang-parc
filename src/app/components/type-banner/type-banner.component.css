@@ -14,3 +14,9 @@
   -webkit-text-stroke-color:rgb(0, 0, 0);
 
 }
+
+.btnhover:hover
+{
+  opacity: 0.5;
+  cursor: pointer;
+}
