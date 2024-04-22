@@ -20,7 +20,7 @@
 
         <div class="col mt-5  ">
          <h3>Contact</h3>
-          <p *ngIf="parc.siteInternet">Site Internet : <a href="{{parc.siteInternet}}"target="_blank" >{{parc.siteInternet}}</a> </p>
+          <p *ngIf="parc.siteInternet">Site Internet : <a href="{{parc.siteInternet}}" target="_blank" >{{parc.siteInternet}}</a> </p>
           <div *ngFor="let reseau of reseauxSociaux">
             <p>{{reseau[1] | titlecase}} : <a href="{{reseau[0]}}" target="_blank">{{reseau[0]}}</a></p>
           </div>
