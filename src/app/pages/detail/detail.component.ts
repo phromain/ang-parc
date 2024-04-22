@@ -5,21 +5,26 @@ import {ListCardsParcComponent} from "../../components/list-cards-parc/list-card
 import {SideBarResearchComponent} from "../../components/side-bar-research/side-bar-research.component";
 import {DataService} from "../../services/data.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {NgForOf, NgIf, TitleCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-    imports: [
-        FooterComponent,
-        HeaderComponent,
-        ListCardsParcComponent,
-        SideBarResearchComponent
-    ],
+  imports: [
+    FooterComponent,
+    HeaderComponent,
+    ListCardsParcComponent,
+    SideBarResearchComponent,
+    NgIf,
+    TitleCasePipe,
+    NgForOf
+  ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css'
 })
 export class DetailComponent implements OnInit {
   parc: any;
+  reseauxSociaux: any[] = [];
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) {
   }
@@ -31,8 +36,12 @@ export class DetailComponent implements OnInit {
         this.dataService.getDetailParc(slugParc).subscribe({
           next: (data: any) => {
             if (data) {
-              console.log(data);
               this.parc = data;
+              this.dataService.getReseauxSociauxParc(data.id).subscribe({
+                next: (data: any) => {
+                  this.reseauxSociaux = data;
+                }
+              });
             } else {
               this.router.navigate(['**']);
             }

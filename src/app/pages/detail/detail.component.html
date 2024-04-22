@@ -4,20 +4,20 @@
     <div class="row justify-content-around">
       <div class="col-6 mt-5 mb-5" style="width: 60vh;">
         <a><img src="{{parc.urlImgParcPrez}}" class="card-img-top img-fluid" alt="Img prez "></a>
-        <a href="" target="_blank"><button type="button" class="offset-md-3 btn btn-danger btnhover mt-4">Achetez vos places</button></a>
+        <a href="{{parc.siteInternet}}" target="_blank"><button type="button" class="offset-md-3 btn btn-danger btnhover mt-4">Achetez vos places</button></a>
       </div>
 
       <div class="col-6 mt-5 mb-5  ">
-        <h2 class=" mb-5 text-center "> </h2>
-        <p></p>
+        <h2 class=" mb-5 text-center ">{{parc.nomParc}} </h2>
+        <p>{{parc.presentation}}</p>
 
         <div class="col mt-5  ">
-         <!-- <h3>Contact</h3>
-          <p *ngIf="siteInternet">Site Internet : <a href="{{siteInternet}}"target="_blank" >{{siteInternet}}</a> </p>
-          <p *ngIf="url_reseau0">{{id_reseau0 | titlecase }} : <a href="{{url_reseau0}}"target="_blank" >{{url_reseau0}}</a>  </p>
-          <p *ngIf="url_reseau1">{{id_reseau1 | titlecase }} : <a href="{{url_reseau1}}"target="_blank" >{{url_reseau1}}</a> </p>
-          <p *ngIf="url_reseau2">{{id_reseau2 | titlecase }} : <a href="{{url_reseau2}}"target="_blank" >{{url_reseau2}}</a> </p>
--->
+         <h3>Contact</h3>
+          <p *ngIf="parc.siteInternet">Site Internet : <a href="{{parc.siteInternet}}"target="_blank" >{{parc.siteInternet}}</a> </p>
+          <div *ngFor="let reseau of reseauxSociaux">
+            <p>{{reseau[1] | titlecase}} : <a href="{{reseau[0]}}" target="_blank">{{reseau[0]}}</a></p>
+          </div>
+
 
         </div>
       </div>
@@ -27,10 +27,10 @@
     <div class="row justify-content-around  p-5">
       <div class="col-5   ">
         <h3>Tarifs</h3>
-        <p>Prix Adulte : €</p>
-        <p>Prix Enfant : €</p>
-        <p> </p>
-        <P>Parking : </P>
+        <p>Prix Adulte : {{parc.prixAdulte}}€</p>
+        <p>Prix Enfant : {{parc.prixEnfant}}€</p>
+        <p *ngIf="parc.gratuite">Gratuité : {{parc.gratuite}}</p>
+        <P>Parking : {{parc.parking}} </P>
 
       </div>
 
@@ -39,9 +39,9 @@
         <div class="row">
           <h3>Localisation</h3>
           <div class="col  ">
-            <p>Adresse : </p>
-            <p>Ville: </p>
-            <p>Code Postal: </p>
+            <p>Adresse : {{parc.adresse}} </p>
+            <p>Ville: {{parc.ville}} </p>
+            <p>Code Postal: {{parc.codePostal}}</p>
           </div>
         </div>
 
@@ -49,25 +49,25 @@
 
       <div class="col-5  mt-5  ">
         <h3>Horaires</h3>
-        <p>Horaire d'ouverture :  </p>
-        <p>Horaire de fermeture : </p>
-        <p>Calendrier du Parc : <a href="" target="_blank">Cliquez ici</a></p>
+        <p>Horaire d'ouverture : {{parc.heureOuverture}} </p>
+        <p>Horaire de fermeture : {{parc.heureFermeture}}</p>
+        <p>Calendrier du Parc : <a href="{{parc.urlCalendrier}}" target="_blank">Cliquez ici</a></p>
 
 
       </div>
 
       <div class="col-5  mt-5  ">
         <h3>Informations Parc</h3>
-        <p>Boutique : </p>
-        <p>Point de restauration : </p>
-        <p>Possibilité de Séjour : </p>
+        <p>Boutique : {{parc.boutique == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Point de restauration : {{parc.restauration == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Possibilité de Séjour : {{parc.sejour == '1' ? 'Oui' : 'Non'}}</p>
 
 
       </div>
 
       <div class="col-12  mt-5  ">
         <h3>Plan du Parc</h3>
-        <a><img src="" class="card-img-top img-fluid" alt=""></a>
+        <a><img src="{{parc.urlPlanParc}}" class="card-img-top img-fluid" alt="plan_{{parc.nomParc}}"></a>
       </div>
 
 

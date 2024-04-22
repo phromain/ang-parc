@@ -24,5 +24,7 @@ export class DataService {
   getDetailParc(slugParc: string): Observable<any> {
     return this.http.get(`${endpoint.api.detailParc}/${slugParc}`);
   }
-
+  getReseauxSociauxParc(idParc: number ): Observable<any> {
+    return this.http.get(`${endpoint.api.detailParc}/${idParc}/reseauxSociaux`);
+  }
 }
