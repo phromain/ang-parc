@@ -34,7 +34,6 @@ export class SideBarResearchComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private parcFilterService: ParcFilterService,private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.updateFormFromQueryParams();
         this.sideBarForm.get('nomParc')!.valueChanges.subscribe(value => {
             if (value !== null) {
                 this.parcFilterService.setNomParc(value);
@@ -69,31 +68,7 @@ export class SideBarResearchComponent implements OnInit {
         this.sideBarForm.get('sejour')!.valueChanges.subscribe(value => {
                 this.parcFilterService.setSejour(!!value);
         });
-
     }
-
-    updateFormFromQueryParams() {
-        this.route.queryParams.subscribe(params => {
-            const typeParc = params['typeparc'];
-            const region = params['region'];
-
-            if (typeParc) {
-                this.sideBarForm.patchValue({[typeParc]: true});
-                this.parcFilterService.setAttraction(typeParc === 'attraction');
-                this.parcFilterService.setAquatique(typeParc === 'aquatique');
-                this.parcFilterService.setSpectacle(typeParc === 'spectacle');
-                this.parcFilterService.setZoo(typeParc === 'zoo');
-            }
-            if (region) {
-                this.sideBarForm.patchValue({regionId: region});
-                this.parcFilterService.setRegionId(region);
-            }
-        });
-    }
-
-
-
-
     onReset() {
         this.sideBarForm.reset({
             nomParc: '',
