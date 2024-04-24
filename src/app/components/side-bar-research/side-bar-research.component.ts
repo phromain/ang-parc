@@ -7,6 +7,8 @@ import {ListRegionComponent} from "../list-region/list-region.component";
 import {ParcFilterService} from "../../services/parc-filter.service";
 import {ActivatedRoute} from "@angular/router";
 
+
+
 @Component({
   selector: 'app-side-bar-research',
   standalone: true,
@@ -33,81 +35,79 @@ export class SideBarResearchComponent implements OnInit {
 
     ngOnInit() {
         this.updateFormFromQueryParams();
-        this.updateParcsFromFormValues();
+        this.sideBarForm.get('nomParc')!.valueChanges.subscribe(value => {
+            if (value !== null) {
+                this.parcFilterService.setNomParc(value);
+            }
+        });
+        this.sideBarForm.get('regionId')!.valueChanges.subscribe(value => {
+            if (value !== null) {
+                this.parcFilterService.setRegionId(value);
+            }
+        });
+        this.sideBarForm.get('attraction')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setAttraction(!!value);
+        });
+        this.sideBarForm.get('aquatique')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setAquatique(!!value);
+        });
+        this.sideBarForm.get('spectacle')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setSpectacle(!!value);
+        });
+        this.sideBarForm.get('zoo')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setZoo(!!value);
+        });
+        this.sideBarForm.get('parkingGratuit')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setParkingGratuit(!!value);
+        });
+        this.sideBarForm.get('restauration')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setRestauration(!!value);
+        });
+        this.sideBarForm.get('boutique')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setBoutique(!!value);
+        });
+        this.sideBarForm.get('sejour')!.valueChanges.subscribe(value => {
+                this.parcFilterService.setSejour(!!value);
+        });
+
     }
 
     updateFormFromQueryParams() {
         this.route.queryParams.subscribe(params => {
             const typeParc = params['typeparc'];
             const region = params['region'];
-            console.log('queryParams', params);
+
             if (typeParc) {
                 this.sideBarForm.patchValue({[typeParc]: true});
+                this.parcFilterService.setAttraction(typeParc === 'attraction');
+                this.parcFilterService.setAquatique(typeParc === 'aquatique');
+                this.parcFilterService.setSpectacle(typeParc === 'spectacle');
+                this.parcFilterService.setZoo(typeParc === 'zoo');
+            }
+            if (region) {
+                this.sideBarForm.patchValue({regionId: region});
+                this.parcFilterService.setRegionId(region);
             }
         });
     }
 
 
-    filterByNomParc(values: any, parc: any) {
-        return values.nomParc ? parc.nomParc.toLowerCase().includes(values.nomParc.toLowerCase()) : true;
-    }
 
-    filterByRegionId(values: any, parc: any) {
-        return values.regionId ? parc.idRegion === values.regionId : true;
-    }
-
-    filterByType(values: any, parc: any) {
-        return (!values.attraction && !values.aquatique && !values.spectacle && !values.zoo) ? true :
-            (values.attraction && parc.libelleTypeParc === 'Attraction') ||
-            (values.aquatique && parc.libelleTypeParc === 'Aquatique') ||
-            (values.spectacle && parc.libelleTypeParc === 'Spectacle') ||
-            (values.zoo && parc.libelleTypeParc === 'Zoo');
-    }
-
-    filterByParkingGratuit(values: any, parc: any) {
-        return values.parkingGratuit ? parc.parkingGratuit === values.parkingGratuit : true;
-    }
-
-    filterByRestauration(values: any, parc: any) {
-        return values.restauration ? parc.restauration === values.restauration : true;
-    }
-
-    filterByBoutique(values: any, parc: any) {
-        return values.boutique ? parc.boutique === values.boutique : true;
-    }
-
-    filterBySejour(values: any, parc: any) {
-        return values.sejour ? parc.sejour === values.sejour : true;
-    }
-
-
-    updateParcsFromFormValues() {
-        this.sideBarForm.valueChanges.subscribe(values => {
-            console.log('form values', values); // Log form values
-            this.parcFilterService.allParcs.subscribe(allParcs => {
-                console.log('allParcs', allParcs); // Log all parcs
-                const filteredParcs = allParcs.filter(parc => {
-                    const isMatch =
-                        this.filterByNomParc(values, parc) &&
-                        this.filterByRegionId(values, parc) &&
-                        this.filterByType(values, parc) &&
-                        this.filterByParkingGratuit(values, parc) &&
-                        this.filterByRestauration(values, parc) &&
-                        this.filterByBoutique(values, parc) &&
-                        this.filterBySejour(values, parc);
-                    console.log('isMatch for parc', parc, ':', isMatch); // Log matching result for each parc
-                    if (isMatch) {
-                        console.log('Matched parc:', parc);
-                    }
-                    return isMatch;
-                });
-                console.log('filteredParcs', filteredParcs); // Log filtered parcs
-                this.parcFilterService.updateParcs(filteredParcs);
-            });
-        });
-    }
 
     onReset() {
-    this.parcFilterService.resetParcs();
-  }
+        this.sideBarForm.reset({
+            nomParc: '',
+            regionId: '',
+            attraction: false,
+            aquatique: false,
+            spectacle: false,
+            zoo: false,
+            parkingGratuit: false,
+            restauration: false,
+            boutique: false,
+            sejour: false
+        });
+        this.parcFilterService.resetParcs();
+    }
+
 }

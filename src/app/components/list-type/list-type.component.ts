@@ -19,8 +19,7 @@ export class ListTypeComponent implements OnInit{
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getTypes().subscribe((data: any[]) => {
-      this.types = data;
-    });
+      this.dataService.types$.subscribe(data => this.types = data);
   }
+
 }

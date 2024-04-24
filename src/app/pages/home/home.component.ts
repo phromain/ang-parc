@@ -4,6 +4,7 @@ import {MapComponent} from "../../components/map/map.component";
 import {TypeBannerComponent} from "../../components/type-banner/type-banner.component";
 import {HeaderComponent} from "../../components/template/header/header.component";
 import {FooterComponent} from "../../components/template/footer/footer.component";
+import {DataService} from "../../services/data.service";
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -18,5 +19,8 @@ import {FooterComponent} from "../../components/template/footer/footer.component
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  constructor(private dataService: DataService) { }
+
 
 }

@@ -17,8 +17,9 @@ export const routes: Routes = [
   {path: 'connexion/password-perdu', component: ForgotPasswordComponent },
   {path: 'connexion/pin', component: PinComponent },
   {path: 'dashboard', component: DashboardComponent },
-  {path: 'recherche', component: ResearchComponent },
+  {path: 'recherche', component: ResearchComponent, },
   {path: 'recherche/detail', component: DetailComponent},
+
 
 
 

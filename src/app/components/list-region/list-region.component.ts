@@ -20,8 +20,8 @@ export class ListRegionComponent implements OnInit{
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getRegions().subscribe((data: any[]) => {
-      this.regions = data.sort((a, b) => a.nomRegion.localeCompare(b.nomRegion));
-    });
+      this.dataService.regions$.subscribe(data => {
+          this.regions = data.sort((a, b) => a.nomRegion.localeCompare(b.nomRegion));
+      });
   }
 }

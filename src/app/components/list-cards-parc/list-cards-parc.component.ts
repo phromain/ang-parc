@@ -18,16 +18,13 @@ export class ListCardsParcComponent implements OnInit {
     parcs: any[] = [];
 
 
-    constructor(private parcFilterService: ParcFilterService, private dataService: DataService) {
+    constructor(private parcFilterService: ParcFilterService) {
     }
 
     ngOnInit() {
-        this.dataService.getParcs().subscribe((parcs: any[]) => {
-            this.parcFilterService.setInitialParcs(parcs);
-            this.parcFilterService.currentParcs.subscribe(currentParcs => {
-                console.log('currentParcs', currentParcs);
-                this.parcs = currentParcs;
-            });
+        this.parcFilterService.currentParcs.subscribe(currentParcs => {
+            console.log('currentParcs', currentParcs);
+            this.parcs = currentParcs;
         });
     }
 

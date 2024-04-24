@@ -40,11 +40,11 @@ export class DetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const slugParc = params['parc'];
       if (slugParc) {
-        this.dataService.getDetailParc(slugParc).subscribe({
+        this.dataService.getDetailParcApi(slugParc).subscribe({
           next: (data: any) => {
             if (data) {
               this.parc = data;
-              this.dataService.getReseauxSociauxParc(data.id).subscribe({
+              this.dataService.getReseauxSociauxParcApi(data.id).subscribe({
                 next: (data: any) => {
                   this.reseauxSociaux = data;
                 }
