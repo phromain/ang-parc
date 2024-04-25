@@ -19,7 +19,7 @@ import {ActivatedRoute} from "@angular/router";
 export class SideBarResearchComponent implements OnInit {
   sideBarForm = this.formBuilder.group({
     nomParc: '',
-    regionId: '',
+    regionId: 0,
     attraction: false,
     aquatique: false,
     spectacle: false,
@@ -72,7 +72,7 @@ export class SideBarResearchComponent implements OnInit {
     onReset() {
         this.sideBarForm.reset({
             nomParc: '',
-            regionId: '',
+            regionId: 0,
             attraction: false,
             aquatique: false,
             spectacle: false,

@@ -11,7 +11,7 @@ export class ParcFilterService {
   currentParcs = this.filteredParcs.asObservable();
   allParcs = this.initialParcs.asObservable();
   nomParc: string = '';
-  regionId: string = '';
+  regionId: number = 0;
   attraction: boolean = false;
   aquatique: boolean = false;
   spectacle: boolean = false;
@@ -45,7 +45,7 @@ export class ParcFilterService {
     this.updateFilteredParcs();
   }
 
-  setRegionId(value: string) {
+  setRegionId(value: number) {
     this.regionId = value;
     this.updateFilteredParcs();
   }
@@ -91,6 +91,8 @@ export class ParcFilterService {
   }
 
   updateFilteredParcs() {
+    console.log("enter");
+    console.log(this.initialParcs);
     const filteredParcs = this.initialParcs.value.filter(parc => {
       return (this.nomParc ? parc.nomParc.toLowerCase().includes(this.nomParc.toLowerCase()) : true) &&
           (this.regionId ? parc.idRegion === this.regionId : true) &&
