@@ -25,7 +25,9 @@ export class SideBarResearchComponent implements OnInit {
     parkingGratuit: false,
     restauration: false,
     boutique: false,
-    sejour: false
+    sejour: false,
+    transport: false
+
   });
 
 
@@ -80,6 +82,9 @@ export class SideBarResearchComponent implements OnInit {
         return values.sejour ? parc.sejour === values.sejour : true;
     }
 
+  filterByTransport(values: any, parc: any) {
+    return values.transport ? parc.transport === values.transport : true;
+  }
 
     updateParcsFromFormValues() {
         this.sideBarForm.valueChanges.subscribe(values => {
@@ -90,12 +95,14 @@ export class SideBarResearchComponent implements OnInit {
                     const isMatch =
                         this.filterByNomParc(values, parc) &&
                         this.filterByRegionId(values, parc) &&
-                        this.filterByType(values, parc) &&
+                        //this.filterByType(values, parc) &&
                         this.filterByParkingGratuit(values, parc) &&
                         this.filterByRestauration(values, parc) &&
                         this.filterByBoutique(values, parc) &&
-                        this.filterBySejour(values, parc);
-                    console.log('isMatch for parc', parc, ':', isMatch); // Log matching result for each parc
+                        this.filterBySejour(values, parc) &&
+                        this.filterByTransport(values, parc);
+
+                  console.log('isMatch for parc', parc, ':', isMatch); // Log matching result for each parc
                     if (isMatch) {
                         console.log('Matched parc:', parc);
                     }

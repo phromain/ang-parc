@@ -4,14 +4,14 @@
       <div class="row justify-content-center ">
   <mat-card  class="row mb-3 pr-5" *ngFor="let parc of parcs">
     <div class="d-flex justify-content-between align-items-center mb-3">
-    {{parc.libelleTypeParc}}
+    {{parc.typeParc}}
     <mat-card-title style="text-decoration: underline;">{{parc.nomParc}}</mat-card-title>
     {{parc.nomRegion}}
     </div>
     <mat-card-title-group class="btnhover">
       <mat-card-content>
         <div>
-          {{parc.presentationMax250}}
+          {{parc.presentation}}
         </div>
           <mat-card-title class="mt-3"> Tarifs: </mat-card-title>
           <div>Adulte : {{parc.prixAdulte}}€</div>
