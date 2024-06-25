@@ -3,9 +3,9 @@
   <div class="container">
     <div class="row justify-content-around">
       <div class="col-6 mt-5 mb-5" style="width: 60vh;">
-        <a><img src="{{parc.urlImgParcPrez}}" class="card-img-top img-fluid" alt="Img prez "></a>
+        <a><img src="" class="card-img-top img-fluid" alt="Img prez "></a>
         <div class="mt-5 text-center">
-          <a href="{{parc.siteInternet}}" target="_blank">
+          <a href="" target="_blank">
             <button mat-flat-button color="accent">
               <mat-icon>shopping_cart</mat-icon>Acheter
             </button>
@@ -21,8 +21,9 @@
         <div class="col mt-5  ">
          <h3>Contact</h3>
           <p *ngIf="parc.siteInternet">Site Internet : <a href="{{parc.siteInternet}}" target="_blank" >{{parc.siteInternet}}</a> </p>
-          <div *ngFor="let reseau of reseauxSociaux">
-            <p>{{reseau[1] | titlecase}} : <a href="{{reseau[0]}}" target="_blank">{{reseau[0]}}</a></p>
+          <div *ngFor="let reseau of parc.reseauxSociaux | keyvalue">
+            <p>{{reseau.key}} : <a href="{{reseau.value}}" target="_blank" >{{reseau.value}}</a>
+            </p>
           </div>
 
 
@@ -36,7 +37,6 @@
         <h3>Tarifs</h3>
         <p>Prix Adulte : {{parc.prixAdulte}}€</p>
         <p>Prix Enfant : {{parc.prixEnfant}}€</p>
-        <p *ngIf="parc.gratuite">Gratuité : {{parc.gratuite}}</p>
         <P>Parking : {{parc.parking}} </P>
 
       </div>
@@ -55,19 +55,27 @@
       </div>
 
       <div class="col-5  mt-5  ">
+    <h3>Date Ouverture</h3>
+        <mat-card class="calendar-card">
+        <mat-calendar [dateClass]="dateClass"></mat-calendar>
+        </mat-card>
+      </div>
+
+    <!--  <div class="col-5  mt-5  ">
         <h3>Horaires</h3>
         <p>Horaire d'ouverture : {{parc.heureOuverture}} </p>
         <p>Horaire de fermeture : {{parc.heureFermeture}}</p>
         <p>Calendrier du Parc : <a href="{{parc.urlCalendrier}}" target="_blank">Cliquez ici</a></p>
 
 
-      </div>
+      </div>-->
 
       <div class="col-5  mt-5  ">
         <h3>Informations Parc</h3>
         <p>Boutique : {{parc.boutique == '1' ? 'Oui' : 'Non'}}</p>
         <p>Point de restauration : {{parc.restauration == '1' ? 'Oui' : 'Non'}}</p>
         <p>Possibilité de Séjour : {{parc.sejour == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Accessible en transport en commun : {{parc.transport == '1' ? 'Oui' : 'Non'}}</p>
 
 
       </div>

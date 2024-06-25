@@ -21,7 +21,7 @@ export class SideBarResearchComponent implements OnInit {
     attraction: false,
     aquatique: false,
     spectacle: false,
-    zoo: false,
+    animalier: false,
     parkingGratuit: false,
     restauration: false,
     boutique: false,
@@ -59,11 +59,11 @@ export class SideBarResearchComponent implements OnInit {
     }
 
     filterByType(values: any, parc: any) {
-        return (!values.attraction && !values.aquatique && !values.spectacle && !values.zoo) ? true :
+        return (!values.attraction && !values.aquatique && !values.spectacle && !values.animalier) ? true :
             (values.attraction && parc.libelleTypeParc === 'Attraction') ||
             (values.aquatique && parc.libelleTypeParc === 'Aquatique') ||
             (values.spectacle && parc.libelleTypeParc === 'Spectacle') ||
-            (values.zoo && parc.libelleTypeParc === 'Zoo');
+            (values.animalier && parc.libelleTypeParc === 'Zoo');
     }
 
     filterByParkingGratuit(values: any, parc: any) {
