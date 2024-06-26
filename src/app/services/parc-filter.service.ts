@@ -14,7 +14,6 @@ export class ParcFilterService {
 
   setInitialParcs(parcs: any[]) {
     this.initialParcs.next(parcs);
-    this.updateParcs(parcs);
   }
 
   updateParcs(parcs: any[]) {
@@ -24,4 +23,5 @@ export class ParcFilterService {
   resetParcs() {
     this.filteredParcs.next(this.initialParcs.value);
   }
+
 }

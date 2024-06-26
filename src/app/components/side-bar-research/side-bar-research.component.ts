@@ -34,8 +34,9 @@ export class SideBarResearchComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private parcFilterService: ParcFilterService,private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.updateFormFromQueryParams();
-        this.updateParcsFromFormValues();
+      this.updateFormFromQueryParams();
+      this.updateParcsFromFormValues();
+      this.sideBarForm.updateValueAndValidity();
     }
 
     updateFormFromQueryParams() {
@@ -44,7 +45,7 @@ export class SideBarResearchComponent implements OnInit {
             const region = params['region'];
             console.log('queryParams', params);
             if (typeParc) {
-                this.sideBarForm.patchValue({[typeParc]: true});
+              this.sideBarForm.patchValue({[typeParc]: true});
             }
         });
     }
@@ -60,10 +61,10 @@ export class SideBarResearchComponent implements OnInit {
 
     filterByType(values: any, parc: any) {
         return (!values.attraction && !values.aquatique && !values.spectacle && !values.animalier) ? true :
-            (values.attraction && parc.libelleTypeParc === 'Attraction') ||
-            (values.aquatique && parc.libelleTypeParc === 'Aquatique') ||
-            (values.spectacle && parc.libelleTypeParc === 'Spectacle') ||
-            (values.animalier && parc.libelleTypeParc === 'Zoo');
+          (values.attraction && parc.typeParc.includes('Attraction')) ||
+          (values.aquatique && parc.typeParc.includes('Aquatique')) ||
+          (values.spectacle && parc.typeParc.includes('Spectacle')) ||
+          (values.animalier && parc.typeParc.includes('Animalier'));
     }
 
     filterByParkingGratuit(values: any, parc: any) {
@@ -86,33 +87,32 @@ export class SideBarResearchComponent implements OnInit {
     return values.transport ? parc.transport === values.transport : true;
   }
 
-    updateParcsFromFormValues() {
-        this.sideBarForm.valueChanges.subscribe(values => {
-            console.log('form values', values); // Log form values
-            this.parcFilterService.allParcs.subscribe(allParcs => {
-                console.log('allParcs', allParcs); // Log all parcs
-                const filteredParcs = allParcs.filter(parc => {
-                    const isMatch =
-                        this.filterByNomParc(values, parc) &&
-                        this.filterByRegionId(values, parc) &&
-                        //this.filterByType(values, parc) &&
-                        this.filterByParkingGratuit(values, parc) &&
-                        this.filterByRestauration(values, parc) &&
-                        this.filterByBoutique(values, parc) &&
-                        this.filterBySejour(values, parc) &&
-                        this.filterByTransport(values, parc);
+  updateParcsFromFormValues() {
+    this.sideBarForm.valueChanges.subscribe(values => {
+      //console.log('form values', values);
+      this.parcFilterService.allParcs.subscribe(allParcs => {
+        //console.log('allParcs', allParcs); // Log all parcs
+        const filteredParcs = allParcs.filter(parc => {
+          const isMatch =
+            this.filterByNomParc(values, parc) &&
+            this.filterByRegionId(values, parc) &&
+            this.filterByType(values, parc) &&
+            this.filterByParkingGratuit(values, parc) &&
+            this.filterByRestauration(values, parc) &&
+            this.filterByBoutique(values, parc) &&
+            this.filterBySejour(values, parc) &&
+            this.filterByTransport(values, parc);
 
-                  console.log('isMatch for parc', parc, ':', isMatch); // Log matching result for each parc
-                    if (isMatch) {
-                        console.log('Matched parc:', parc);
-                    }
-                    return isMatch;
-                });
-                console.log('filteredParcs', filteredParcs); // Log filtered parcs
-                this.parcFilterService.updateParcs(filteredParcs);
-            });
+          /*console.log('isMatch for parc', parc, ':', isMatch); // Log matching result for each parc
+            if (isMatch) {
+                console.log('Matched parc:', parc);
+            }*/
+            return isMatch;
         });
-    }
+        this.parcFilterService.updateParcs(filteredParcs);
+      });
+    });
+  }
 
     onReset() {
     this.parcFilterService.resetParcs();

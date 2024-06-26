@@ -31,4 +31,7 @@ export class ListCardsParcComponent implements OnInit {
         });
     }
 
+
+
+
 }

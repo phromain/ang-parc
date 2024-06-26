@@ -51,12 +51,7 @@ export class DetailComponent implements OnInit {
           next: (data: any) => {
             if (data) {
               this.parc = data;
-
-              this.periods = this.parc.periodeOuverture.map((periode: string) => {
-                const [start, end] = periode.split(' - ');
-                return {start: new Date(start), end: new Date(end)};
-              });
-
+              this.periods = this.adjustPeriods(this.parc.periodeOuverture);
 
             } else {
               this.router.navigate(['**']);
@@ -72,6 +67,19 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  adjustPeriods(periodeOuverture: string[]) {
+    return periodeOuverture.map((periode: string) => {
+      const [start, end] = periode.split(' - ');
+      let startDate = new Date(start);
+      startDate.setDate(startDate.getDate() - 1);
+      if (startDate.getDate() === 31 && [4, 6, 9, 11].includes(startDate.getMonth())) {
+        startDate.setDate(30);
+      } else if (startDate.getMonth() === 2) {
+        startDate.setDate(startDate.getFullYear() % 4 === 0 ? 29 : 28);
+      }
+      return {start: startDate, end: new Date(end)};
+    });
+  }
 
   dateClass = (d: Date) => {
     const dateMatch = this.periods.find(period =>
