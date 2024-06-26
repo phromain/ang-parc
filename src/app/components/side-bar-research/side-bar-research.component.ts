@@ -17,7 +17,7 @@ import {ActivatedRoute} from "@angular/router";
 export class SideBarResearchComponent implements OnInit {
   sideBarForm = this.formBuilder.group({
     nomParc: '',
-    regionId: '',
+    slugRegion: '',
     attraction: false,
     aquatique: false,
     spectacle: false,
@@ -47,6 +47,9 @@ export class SideBarResearchComponent implements OnInit {
             if (typeParc) {
               this.sideBarForm.patchValue({[typeParc]: true});
             }
+            if(region) {
+              this.sideBarForm.patchValue({slugRegion: region});
+            }
         });
     }
 
@@ -55,8 +58,8 @@ export class SideBarResearchComponent implements OnInit {
         return values.nomParc ? parc.nomParc.toLowerCase().includes(values.nomParc.toLowerCase()) : true;
     }
 
-    filterByRegionId(values: any, parc: any) {
-        return values.regionId ? parc.idRegion === values.regionId : true;
+    filterByRegionSlug(values: any, parc: any) {
+        return values.slugRegion ? parc.slugRegion === values.slugRegion : true;
     }
 
     filterByType(values: any, parc: any) {
@@ -95,7 +98,7 @@ export class SideBarResearchComponent implements OnInit {
         const filteredParcs = allParcs.filter(parc => {
           const isMatch =
             this.filterByNomParc(values, parc) &&
-            this.filterByRegionId(values, parc) &&
+            this.filterByRegionSlug(values, parc) &&
             this.filterByType(values, parc) &&
             this.filterByParkingGratuit(values, parc) &&
             this.filterByRestauration(values, parc) &&

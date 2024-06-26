@@ -1,9 +1,9 @@
 <div class="mt-3" [formGroup]="formRegion">
   <mat-form-field>
     <mat-label>Région :</mat-label>
-    <mat-select formControlName="regionId">
+    <mat-select formControlName="slugRegion">
       <mat-option value="">Sélectionnez une région</mat-option>
-      <mat-option *ngFor="let region of regions" [value]="region.id">{{region.nomRegion}}</mat-option>
+      <mat-option *ngFor="let region of regions" [value]="region.slugRegion">{{region.nomRegion}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
