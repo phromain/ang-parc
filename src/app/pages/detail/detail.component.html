@@ -15,13 +15,13 @@
 
 
       <div class="col-6 mt-5 mb-5  ">
-        <h2 class=" mb-5 text-center ">{{parc.nomParc}} </h2>
-        <p>{{parc.presentation}}</p>
+        <h2 class=" mb-5 text-center ">{{parc?.nomParc}} </h2>
+        <p>{{parc?.presentation}}</p>
 
         <div class="col mt-5  ">
          <h3>Contact</h3>
-          <p *ngIf="parc.siteInternet">Site Internet : <a href="{{parc.siteInternet}}" target="_blank" >{{parc.siteInternet}}</a> </p>
-          <div *ngFor="let reseau of parc.reseauxSociaux | keyvalue">
+          <p *ngIf="parc?.siteInternet">Site Internet : <a href="{{parc?.siteInternet}}" target="_blank" >{{parc?.siteInternet}}</a> </p>
+          <div *ngFor="let reseau of parc?.reseauxSociaux | keyvalue">
             <p>{{reseau.key}} : <a href="{{reseau.value}}" target="_blank" >{{reseau.value}}</a>
             </p>
           </div>
@@ -35,9 +35,9 @@
     <div class="row justify-content-around  p-5">
       <div class="col-5   ">
         <h3>Tarifs</h3>
-        <p>Prix Adulte : {{parc.prixAdulte}}€</p>
-        <p>Prix Enfant : {{parc.prixEnfant}}€</p>
-        <P>Parking : {{parc.parking}} </P>
+        <p>Prix Adulte : {{parc?.prixAdulte}}€</p>
+        <p>Prix Enfant : {{parc?.prixEnfant}}€</p>
+        <P>Parking : {{parc?.parking}} </P>
 
       </div>
 
@@ -46,9 +46,9 @@
         <div class="row">
           <h3>Localisation</h3>
           <div class="col  ">
-            <p>Adresse : {{parc.adresse}} </p>
-            <p>Ville: {{parc.ville}} </p>
-            <p>Code Postal: {{parc.codePostal}}</p>
+            <p>Adresse : {{parc?.adresse}} </p>
+            <p>Ville: {{parc?.ville}} </p>
+            <p>Code Postal: {{parc?.codePostal}}</p>
           </div>
         </div>
 
@@ -61,28 +61,19 @@
         </mat-card>
       </div>
 
-    <!--  <div class="col-5  mt-5  ">
-        <h3>Horaires</h3>
-        <p>Horaire d'ouverture : {{parc.heureOuverture}} </p>
-        <p>Horaire de fermeture : {{parc.heureFermeture}}</p>
-        <p>Calendrier du Parc : <a href="{{parc.urlCalendrier}}" target="_blank">Cliquez ici</a></p>
-
-
-      </div>-->
-
       <div class="col-5  mt-5  ">
         <h3>Informations Parc</h3>
-        <p>Boutique : {{parc.boutique == '1' ? 'Oui' : 'Non'}}</p>
-        <p>Point de restauration : {{parc.restauration == '1' ? 'Oui' : 'Non'}}</p>
-        <p>Possibilité de Séjour : {{parc.sejour == '1' ? 'Oui' : 'Non'}}</p>
-        <p>Accessible en transport en commun : {{parc.transport == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Boutique : {{parc?.boutique == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Point de restauration : {{parc?.restauration == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Possibilité de Séjour : {{parc?.sejour == '1' ? 'Oui' : 'Non'}}</p>
+        <p>Accessible en transport en commun : {{parc?.transport == '1' ? 'Oui' : 'Non'}}</p>
 
 
       </div>
 
       <div class="col-12  mt-5  ">
         <h3>Plan du Parc</h3>
-        <a><img src="{{parc.urlPlanParc}}" class="card-img-top img-fluid" alt="plan_{{parc.nomParc}}"></a>
+        <a><img src="{{parc?.urlPlanParc}}" class="card-img-top img-fluid" alt="plan_{{parc?.nomParc}}"></a>
       </div>
 
 
