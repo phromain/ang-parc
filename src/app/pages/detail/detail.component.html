@@ -3,14 +3,14 @@
   <div class="container">
     <div class="row justify-content-around">
       <div class="col-6 mt-5 mb-5" style="width: 60vh;">
-        <a><img src="" class="card-img-top img-fluid" alt="Img prez "></a>
-        <div class="mt-5 text-center">
-          <a href="" target="_blank">
-            <button mat-flat-button color="accent">
-              <mat-icon>shopping_cart</mat-icon>Acheter
-            </button>
-          </a>
-        </div>
+        <a *ngFor="let image of parc?.images" >
+          <img *ngIf="image.presentation" src="http://localhost:8082/srv-img/images/{{image.presentation}}/md" class="card-img-top img-fluid" alt="Img prez {{parc?.nomParc}} ">
+        </a>        <div class="mt-5 text-center">
+          <button mat-flat-button color="accent" disabled>
+            <mat-icon>shopping_cart</mat-icon>Acheter
+          </button>
+
+      </div>
       </div>
 
 
@@ -19,7 +19,7 @@
         <p>{{parc?.presentation}}</p>
 
         <div class="col mt-5  ">
-         <h3>Contact</h3>
+          <h3>Contact</h3>
           <p *ngIf="parc?.siteInternet">Site Internet : <a href="{{parc?.siteInternet}}" target="_blank" >{{parc?.siteInternet}}</a> </p>
           <div *ngFor="let reseau of parc?.reseauxSociaux | keyvalue">
             <p>{{reseau.key}} : <a href="{{reseau.value}}" target="_blank" >{{reseau.value}}</a>
@@ -55,9 +55,9 @@
       </div>
 
       <div class="col-5  mt-5  ">
-    <h3>Date Ouverture</h3>
+        <h3>Date Ouverture</h3>
         <mat-card class="calendar-card">
-        <mat-calendar [dateClass]="dateClass"></mat-calendar>
+          <mat-calendar [dateClass]="dateClass"></mat-calendar>
         </mat-card>
       </div>
 
