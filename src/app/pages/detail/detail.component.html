@@ -3,9 +3,10 @@
   <div class="container">
     <div class="row justify-content-around">
       <div class="col-6 mt-5 mb-5" style="width: 60vh;">
-        <a *ngFor="let image of parc?.images" >
-          <img *ngIf="image.presentation" src="http://localhost:8082/srv-img/images/{{image.presentation}}/md" class="card-img-top img-fluid" alt="Img prez {{parc?.nomParc}} ">
-        </a>        <div class="mt-5 text-center">
+        <div *ngFor="let image of parc?.images" >
+          <img *ngIf="image.presentation" src="http://localhost:8082/srv-img/images/{{image.presentation}}/md" class="card-img-top img-fluid" alt="Img prez {{parc?.nomParc}}">
+        </div>
+        <div class="mt-5 text-center">
           <button mat-flat-button color="accent" disabled>
             <mat-icon>shopping_cart</mat-icon>Acheter
           </button>
@@ -73,7 +74,9 @@
 
       <div class="col-12  mt-5  ">
         <h3>Plan du Parc</h3>
-        <a><img src="{{parc?.urlPlanParc}}" class="card-img-top img-fluid" alt="plan_{{parc?.nomParc}}"></a>
+        <div *ngFor="let image of parc?.images" >
+          <img *ngIf="image.plan" src="http://localhost:8082/srv-img/images/{{image.plan}}/nm" class="card-img-top img-fluid" alt="Img plan {{parc?.nomParc}}">
+        </div>
       </div>
 
 
