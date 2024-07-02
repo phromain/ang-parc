@@ -19,18 +19,18 @@ export class DataService {
 
 
   getParcs(): Observable<any> {
-    return this.http.get(endpoint.api.listParcs);
+    return this.http.get(endpoint.api.listParcs, this.httpOptions);
   }
 
   getTypes(): Observable<any> {
-    return this.http.get(endpoint.api.listTypes);
+    return this.http.get(endpoint.api.listTypes, this.httpOptions);
   }
 
   getRegions(): Observable<any> {
     return this.http.get(endpoint.api.listRegions, this.httpOptions);
   }
   getDetailParc(slugParc: string): Observable<any> {
-    return this.http.get(`${endpoint.api.detailParc}/${slugParc}`);
+    return this.http.get(`${endpoint.api.detailParc}/${slugParc}`, this.httpOptions);
   }
 
 }
