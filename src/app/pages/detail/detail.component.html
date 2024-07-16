@@ -6,12 +6,7 @@
         <div *ngFor="let image of parc?.images" >
           <img *ngIf="image.presentation" src="http://localhost:8082/srv-img/images/{{image.presentation}}/md" class="card-img-top img-fluid" alt="Img prez {{parc?.nomParc}}">
         </div>
-        <div class="mt-5 text-center">
-          <button mat-flat-button color="accent" disabled>
-            <mat-icon>shopping_cart</mat-icon>Acheter
-          </button>
 
-      </div>
       </div>
 
 
@@ -26,7 +21,12 @@
             <p>{{reseau.key}} : <a href="{{reseau.value}}" target="_blank" >{{reseau.value}}</a>
             </p>
           </div>
+          <div class="mt-5 text-center">
+            <button mat-flat-button color="accent" disabled>
+              <mat-icon>shopping_cart</mat-icon>Acheter
+            </button>
 
+          </div>
 
         </div>
       </div>
