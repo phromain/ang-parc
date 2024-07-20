@@ -16,10 +16,11 @@
         </mat-form-field>
       </div>
       <div class="col">
-        <c-alert color="danger" *ngIf="submitted && errorMessage">
-          {{ errorMessage }}
-        </c-alert>
+          <c-alert color="danger" *ngIf="submitted && errorMessage">
+            {{ errorMessage }}
+          </c-alert>
       </div>
+      <button class="mt-3" type="submit" mat-raised-button color="primary" [routerLink]="['/connexion']" >Retour</button>
       <button class="mt-3" type="submit" mat-raised-button color="accent">Envoyer</button>
     </div>
   </div>

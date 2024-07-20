@@ -7,7 +7,7 @@ import {
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButton} from "@angular/material/button";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import Swal from 'sweetalert2';
 import {AlertComponent,} from "@coreui/angular";
 import {NgIf} from "@angular/common";
@@ -17,10 +17,11 @@ import {FooterComponent} from "../../components/template/footer/footer.component
 
 
 
+
 @Component({
   selector: 'app-forgot-username',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButton, AlertComponent, NgIf, HeaderComponent, FooterComponent],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButton, AlertComponent, NgIf, HeaderComponent, FooterComponent, RouterLink],
   templateUrl: './forgot-username.component.html',
   styleUrl: './forgot-username.component.css'
 })
@@ -42,11 +43,11 @@ export class ForgotUsernameComponent {
       if (this.formEmail.get('email')?.errors?.['required']) {
         this.errorMessage += 'L email est requis. ';
       }
-      if (this.formEmail.get('email')?.errors?.['email']) {
+      if (this.formEmail.get('email')?.errors?.['pattern']) {
         this.errorMessage += 'Le format de l\'email est invalide. ';
       }
     } else {
-
+      this.sweetAlertMessage();
     }
   }
 
@@ -57,7 +58,7 @@ export class ForgotUsernameComponent {
         icon: "success",
         title: "Si votre e-mail : " + this.formEmail.value.email + " est enregistré, vous recevrez bientôt votre username.",
         showConfirmButton: false,
-        timer: 2500
+        timer: 3200
       });
       this.router.navigate(['connexion'])
     }

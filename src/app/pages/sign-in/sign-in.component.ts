@@ -31,8 +31,8 @@ import {FooterComponent} from "../../components/template/footer/footer.component
 export class SignInComponent {
 
   form: FormGroup = this.formBuilder.group({
-    username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]]
+    username: ['', [Validators.required,Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(6), Validators.maxLength(18)]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(25),Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/)]],
   })
 
   submitted  = false;
@@ -51,6 +51,9 @@ export class SignInComponent {
       if (this.form.get('username')?.errors?.['required']) {
         this.errorMessage += 'Le nom d\'utilisateur est requis. ';
       }
+      if (this.form.get('username')?.errors?.['pattern']) {
+         this.errorMessage += 'Seules les lettres sont autorisées sans accents.';
+      }
       if (this.form.get('username')?.errors?.['minlength']) {
         this.errorMessage += 'Le nom d\'utilisateur doit comporter au moins 6 caractères. ';
       }
@@ -66,7 +69,10 @@ export class SignInComponent {
       if (this.form.get('password')?.errors?.['maxlength']) {
         this.errorMessage += 'Le mot de passe ne doit pas dépasser 25 caractères. ';
       }
-    } else {
-    }
+      if (this.form.get('password')?.errors?.['pattern']) {
+      this.errorMessage += 'Il faut une majuscule, un chiffre, une lettre et un caractère spécial.';
+      }
+      else {
+    } }
   }
 }

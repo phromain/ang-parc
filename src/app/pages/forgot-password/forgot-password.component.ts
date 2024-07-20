@@ -8,29 +8,30 @@ import {MatInput} from "@angular/material/input";
 import {NgIf} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-    imports: [
-        AlertComponent,
-        FooterComponent,
-        HeaderComponent,
-        MatButton,
-        MatFormField,
-        MatInput,
-        MatLabel,
-        NgIf,
-        ReactiveFormsModule
-    ],
+  imports: [
+    AlertComponent,
+    FooterComponent,
+    HeaderComponent,
+    MatButton,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    NgIf,
+    ReactiveFormsModule,
+    RouterLink
+  ],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css'
 })
 export class ForgotPasswordComponent {
   formUsername: FormGroup = this.formBuilder.group({
-    username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/)]],
+    username: ['', [Validators.required,Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(6), Validators.maxLength(18)]],
   });
   submitted = false;
   errorMessage = '';
@@ -44,13 +45,19 @@ export class ForgotPasswordComponent {
     this.errorMessage = '';
     if (this.formUsername.invalid) {
       if (this.formUsername.get('username')?.errors?.['required']) {
-        this.errorMessage += 'L\'Username est requis. ';
+        this.errorMessage += 'Le nom d\'utilisateur est requis. ';
       }
-      if (this.formUsername.get('username')?.errors?.['username']) {
-        this.errorMessage += 'Seules les lettres sont autorisées sans accents';
+      if (this.formUsername.get('username')?.errors?.['pattern']) {
+        this.errorMessage += 'Seules les lettres sont autorisées sans accents.';
+      }
+      if (this.formUsername.get('username')?.errors?.['minlength']) {
+        this.errorMessage += 'Le nom d\'utilisateur doit comporter au moins 6 caractères. ';
+      }
+      if (this.formUsername.get('username')?.errors?.['maxlength']) {
+        this.errorMessage += 'Le nom d\'utilisateur ne doit pas dépasser 18 caractères. ';
       }
     } else {
-
+      this.sweetAlertMessage();
     }
   }
 
@@ -61,7 +68,7 @@ export class ForgotPasswordComponent {
       icon: "success",
       title: "Si votre pseudo est enregistré, vous recevrez un lien de réinitialisation de mot de passe.",
       showConfirmButton: false,
-      timer: 2500
+      timer: 3200
     });
     this.router.navigate(['connexion'])
   }
