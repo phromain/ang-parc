@@ -55,11 +55,11 @@ export class ForgotUsernameComponent {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Un email est envoyé sur " + this.formEmail.value.email + " avec votre Username",
+        title: "Si votre e-mail : " + this.formEmail.value.email + " est enregistré, vous recevrez bientôt votre username.",
         showConfirmButton: false,
         timer: 2500
       });
-      this.router.navigate(['connexion2'])
+      this.router.navigate(['connexion'])
     }
 
 

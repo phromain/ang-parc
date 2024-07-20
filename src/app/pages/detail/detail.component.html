@@ -4,7 +4,7 @@
     <div class="row justify-content-around">
       <div class="col-6 mt-5 mb-5" style="width: 60vh;">
         <div *ngFor="let image of parc?.images" >
-          <img *ngIf="image.presentation" src="http://localhost:8082/srv-img/images/{{image.presentation}}/md" class="card-img-top img-fluid" alt="Img prez {{parc?.nomParc}}">
+          <img *ngIf="image.presentation" src="http://parc.localhost/srv-img/images/{{image.presentation}}/md" class="card-img-top img-fluid" alt="Img prez {{parc?.nomParc}}">
         </div>
 
       </div>
@@ -75,7 +75,7 @@
       <div class="col-12  mt-5  ">
         <h3>Plan du Parc</h3>
         <div *ngFor="let image of parc?.images" >
-          <img *ngIf="image.plan" src="http://localhost:8082/srv-img/images/{{image.plan}}/nm" class="card-img-top img-fluid" alt="Img plan {{parc?.nomParc}}">
+          <img *ngIf="image.plan" src="http://parc.localhost/srv-img/images/{{image.plan}}/nm" class="card-img-top img-fluid" alt="Img plan {{parc?.nomParc}}">
         </div>
       </div>
 
