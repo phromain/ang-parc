@@ -1,5 +1,12 @@
 
+export let CURRENT_TOKEN = '';
+export const constants = {
+  CURRENT_TOKEN: 'CURRENT_TOKEN',
+};
+
 const apiUrl = 'http://parc.localhost';
+const apiUrlLocal = 'http://localhost:8084';
+
 
 export const endpoint = {
   api:{
@@ -8,12 +15,11 @@ export const endpoint = {
     listTypes: `${apiUrl}/api/types`,
     detailParc: `${apiUrl}/api/parcs`,
 
-    forgotUsername: `${apiUrl}/auth/forgot-username`,
-    forgotPassword: `${apiUrl}/auth/forgot-password`,
-    validToken: `${apiUrl}/auth/validate-reset-token`,
-    resetPassword: `${apiUrl}/auth/reset-password`,
-
-    register: `${apiUrl}/auth/register`,
+    forgotUsername: `${apiUrlLocal}/auth/forgot-username`,
+    forgotPassword: `${apiUrlLocal}/auth/forgot-password`,
+    validToken: `${apiUrlLocal}/auth/validate-reset-token`,
+    resetPassword: `${apiUrlLocal}/auth/reset-password`,
+    register: `${apiUrlLocal}/auth/register`,
 
   },
 };

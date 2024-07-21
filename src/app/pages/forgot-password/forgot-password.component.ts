@@ -57,7 +57,16 @@ export class ForgotPasswordComponent {
         this.errorMessage += 'Le nom d\'utilisateur ne doit pas dépasser 18 caractères. ';
       }
     } else {
-      this.sweetAlertMessage();
+      // @ts-ignore
+      this.authService.onForgotPassword(this.formUsername.get('username').value).subscribe({
+        next: response => {
+            this.sweetAlertMessage();
+
+        },
+        error: err => {
+          this.sweetAlertMessageError(err.error);
+        }
+      });
     }
   }
 
@@ -73,4 +82,15 @@ export class ForgotPasswordComponent {
     this.router.navigate(['connexion'])
   }
 
+
+  sweetAlertMessageError( error : string)
+  {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Vous rencontre une erreur pour la raison : " + error,
+      showConfirmButton: false,
+      timer: 3200
+    });
+  }
 }

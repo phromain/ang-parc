@@ -47,22 +47,42 @@ export class ForgotUsernameComponent {
         this.errorMessage += 'Le format de l\'email est invalide. ';
       }
     } else {
-      this.sweetAlertMessage();
+        // @ts-ignore
+        this.authService.onForgotUsername(this.formEmail.value).subscribe({
+          next: response => {
+            this.sweetAlertMessage();
+
+          },
+          error: err => {
+            this.sweetAlertMessageError(err.error);
+          }
+        });
+      }
     }
-  }
 
     sweetAlertMessage()
     {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Si votre e-mail : " + this.formEmail.value.email + " est enregistré, vous recevrez bientôt votre username.",
+        title: "Si votre e-mail est enregistré, vous recevrez bientôt votre nom d'utilisateur.",
         showConfirmButton: false,
         timer: 3200
       });
       this.router.navigate(['connexion'])
     }
 
+
+    sweetAlertMessageError( error : string)
+    {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Vous rencontre une erreur pour la raison : " + error,
+        showConfirmButton: false,
+        timer: 3200
+      });
+    }
 
 }
 
