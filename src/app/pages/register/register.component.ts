@@ -12,6 +12,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router, RouterLink} from "@angular/router";
 import Swal from "sweetalert2";
 import {MustMatch} from "../../validator/validators";
+import {IRegister} from "../../models/auth.model";
 
 @Component({
   selector: 'app-register',
@@ -42,6 +43,7 @@ export class RegisterComponent {
     confPassword: ['', [Validators.required]]}, {
     validator: MustMatch('password', 'confPassword')
   });
+
 
   submitted  = false;
   errorMessage = '';
@@ -93,7 +95,21 @@ export class RegisterComponent {
         this.errorMessage += 'Le Password et la confirmation du mot du password doit etre identique. ';
       }
     } else {
-      this.sweetAlertMessage();
+      const registerData: IRegister = {
+        pseudo: this.formRegister.value.username,
+        email: this.formRegister.value.email,
+        mdp: this.formRegister.value.password
+      };
+      // @ts-ignore
+      this.authService.onRegister(registerData).subscribe({
+        next: response => {
+          this.sweetAlertMessage();
+
+        },
+        error: err => {
+          this.sweetAlertMessageError(err.error);
+        }
+      });
     }
   }
 
@@ -102,7 +118,7 @@ export class RegisterComponent {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Inscription réussie, merci de valider votre inscription sur votre adresse mail : " + this.formRegister.get('email')?.value ,
+      title: "Inscription réussie, merci de valider votre inscription sur votre adresse mail : " + this.formRegister.get('email')?.value,
       showConfirmButton: false,
       timer: 3200
     });
@@ -110,5 +126,15 @@ export class RegisterComponent {
   }
 
 
+  sweetAlertMessageError( error : string)
+  {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Vous rencontrez une erreur pour la raison : " + error,
+      showConfirmButton: false,
+      timer: 3200
+    });
+  }
 
 }

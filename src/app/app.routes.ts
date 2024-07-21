@@ -11,6 +11,7 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {AuthGuard} from "./guard/auth.guard";
+import {ResetPasswordGuard} from "./guard/reset-password.guard";
 
 export const routes: Routes = [
 
@@ -19,7 +20,7 @@ export const routes: Routes = [
   {path: 'connexion', component: SignInComponent },
   {path: 'connexion/login-perdu', component: ForgotUsernameComponent},
   {path: 'connexion/password-perdu', component: ForgotPasswordComponent },
-  {path: 'connexion/password-perdu/reset-password', component: ResetPasswordComponent },
+  {path: 'connexion/password-perdu/reset-password/:token', component: ResetPasswordComponent, canActivate: [ResetPasswordGuard] },
   {path: 'connexion/pin', component: PinComponent },
   {path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard] },
   {path: 'recherche', component: ResearchComponent },

@@ -7,10 +7,11 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {NgIf} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {MustMatch} from "../../validator/validators";
 import {AuthService} from "../../services/auth.service";
 import Swal from "sweetalert2";
+import {IPassword} from "../../models/auth.model";
 
 @Component({
   selector: 'app-reset-password',
@@ -41,7 +42,7 @@ export class ResetPasswordComponent {
   submitted  = false;
   errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
 
 
@@ -68,9 +69,19 @@ export class ResetPasswordComponent {
         this.errorMessage += 'Le Password et la confirmation du mot du password doit etre identique. ';
       }
     } else {
-      this.sweetAlertMessage();
+      const token = this.route.snapshot.paramMap.get('token');
+      const passwordData: IPassword = { mdp: this.formResetPassword.value.password };
+      this.authService.onResetPassword(token, passwordData).subscribe({
+        next: response => {
+          this.sweetAlertMessage();
+        },
+        error: err => {
+          this.sweetAlertMessageError(err.error);
+        }
+      });
     }
   }
+
 
   sweetAlertMessage()
   {
@@ -84,6 +95,18 @@ export class ResetPasswordComponent {
     this.router.navigate(['connexion'])
   }
 
+  sweetAlertMessageError( error : string)
+  {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Vous avez rencontrez une erreur, merci de ressayer plus tard.",
+      showConfirmButton: false,
+      timer: 3200
+    });
+    this.router.navigate(['connexion/password-perdu'])
+
+  }
 
 
 }

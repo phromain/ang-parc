@@ -88,7 +88,7 @@ export class ForgotPasswordComponent {
     Swal.fire({
       position: "center",
       icon: "error",
-      title: "Vous rencontre une erreur pour la raison : " + error,
+      title: "Vous rencontrez une erreur pour la raison : " + error,
       showConfirmButton: false,
       timer: 3200
     });

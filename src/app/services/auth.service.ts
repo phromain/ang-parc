@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TokenService} from "./token.service";
 import {endpoint} from "../constants/constants";
 import {BehaviorSubject} from "rxjs";
-import {IEmail} from "../models/auth.model";
+import {IEmail, IPassword, IRegister} from "../models/auth.model";
 
 @Injectable({
   providedIn: 'root'
@@ -38,13 +38,14 @@ export class AuthService {
     })
   };
 
-  generateHttpOptions(username?: string) {
+  generateHttpOptions(headersObj?: { [key: string]: string }) {
     let headers = new HttpHeaders().set('apikey', this.apikey);
 
-    if (username) {
-      headers = headers.set('login', username);
+    if (headersObj) {
+      for (let key in headersObj) {
+        headers = headers.set(key, headersObj[key]);
+      }
     }
-
     return { headers, responseType: 'text' };
   }
 /*
@@ -61,16 +62,36 @@ export class AuthService {
     return this.http.post(`${apiEndpoint.AuthEndpoint.forgotUsername}`, data, { observe: 'response', responseType: 'text' });
 */
   onForgotPassword(username: string){
-    const httpOptions = this.generateHttpOptions(username);
+    const httpOptions = this.generateHttpOptions({ 'login': username });
     // @ts-ignore
     return this.http.post(`${endpoint.api.forgotPassword}`,{}, httpOptions, { observe: 'response', responseType: 'text' });
   }
+
+  onValideResetToken(token: string){
+    const httpOptions = this.generateHttpOptions();
+    // @ts-ignore
+    return this.http.get(`${endpoint.api.validToken}/${token}`, httpOptions, { observe: 'response' });
+  }
+
+  onResetPassword(token: string | null, data: IPassword){
+    const httpOptions = this.generateHttpOptions();
+// @ts-ignore
+    return this.http.post(`${endpoint.api.resetPassword}/${token}`,data, httpOptions, { observe: 'response', responseType: 'text' });
+  }
+
 
   onForgotUsername(data: IEmail){
     const httpOptions = this.generateHttpOptions();
     // @ts-ignore
     return this.http.post(`${endpoint.api.forgotUsername}`,data, httpOptions, { observe: 'response', responseType: 'text' });
   }
+
+  onRegister(data: IRegister){
+    const httpOptions = this.generateHttpOptions();
+    // @ts-ignore
+    return this.http.post(`${endpoint.api.register}`,data, httpOptions, { observe: 'response', responseType: 'text' });
+  }
+
 
   // Getters && Setters
 
