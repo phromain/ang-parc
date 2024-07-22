@@ -60,6 +60,7 @@ export class ForgotPasswordComponent {
       // @ts-ignore
       this.authService.onForgotPassword(this.formUsername.get('username').value).subscribe({
         next: response => {
+          console.log("response " + response)
             this.sweetAlertMessage();
 
         },

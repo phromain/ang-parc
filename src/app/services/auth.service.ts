@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {TokenService} from "./token.service";
 import {endpoint} from "../constants/constants";
 import {BehaviorSubject} from "rxjs";
 import {IEmail, IPassword, IRegister} from "../models/auth.model";
+import {JwtService} from "./jwt.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private username: string = "";
+  private _username: string = "";
+  private _password: string = "";
+
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   login() {
     this.isAuthenticatedSubject.next(true);
@@ -19,7 +20,7 @@ export class AuthService {
 
   logout() {
     this.isAuthenticatedSubject.next(false);
-    this.tokenService.removeToken();
+    this.jwtService.removeJwt();
   }
 
   isAuthenticated(): boolean {
@@ -27,7 +28,7 @@ export class AuthService {
   }
 
 
-  constructor(private tokenService: TokenService, private  http: HttpClient) {
+  constructor(private jwtService: JwtService, private  http: HttpClient) {
   }
 
     private apikey = '5zLyjhf1Ntc6xhYTSyBlJUiBlo5zyFfi';
@@ -48,19 +49,7 @@ export class AuthService {
     }
     return { headers, responseType: 'text' };
   }
-/*
-  onLogin(data: ILogin) {
-    return this.http.post(`${apiEndpoint.AuthEndpoint.login}`, data, { observe: 'response', responseType: 'text' });
-  }
 
-  onConfirmPin(data: IPin) {
-    const headers = new HttpHeaders().set('username', this.getUsername());
-    return this.http.post(`${apiEndpoint.AuthEndpoint.loginPin}`, data, { headers, observe: 'response', responseType: 'text' });
-  }
-
-  onForgotUsername(data: Iemail){
-    return this.http.post(`${apiEndpoint.AuthEndpoint.forgotUsername}`, data, { observe: 'response', responseType: 'text' });
-*/
   onForgotPassword(username: string){
     const httpOptions = this.generateHttpOptions({ 'login': username });
     // @ts-ignore
@@ -92,15 +81,35 @@ export class AuthService {
     return this.http.post(`${endpoint.api.register}`,data, httpOptions, { observe: 'response', responseType: 'text' });
   }
 
+  onLogin(login: string, password: string){
+    const httpOptions = this.generateHttpOptions({ 'login': login , 'password':password });
+    // @ts-ignore
+    return this.http.post(`${endpoint.api.login}`,{}, httpOptions, { observe: 'response'});
+  }
+
+  onConfirmPin(login: string, password: string, pin:string){
+    const httpOptions = this.generateHttpOptions({ 'login': login , 'password':password,'pin':pin });
+    // @ts-ignore
+    return this.http.post(`${endpoint.api.loginVerify}`,{}, httpOptions, { observe: 'response' });
+  }
+
+
+
 
   // Getters && Setters
-
-  setUsername(username: string) {
-    this.username = username;
+  get username(): string {
+    return this._username;
   }
 
-  getUsername() {
-    return this.username;
+  set username(value: string) {
+    this._username = value;
   }
 
+  get password(): string {
+    return this._password;
+  }
+
+  set password(value: string) {
+    this._password = value;
+  }
 }

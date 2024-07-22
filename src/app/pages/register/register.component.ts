@@ -103,6 +103,7 @@ export class RegisterComponent {
       // @ts-ignore
       this.authService.onRegister(registerData).subscribe({
         next: response => {
+          console.log("response " + response)
           this.sweetAlertMessage();
 
         },

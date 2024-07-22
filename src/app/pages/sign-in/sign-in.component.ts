@@ -9,6 +9,7 @@ import {NgIf} from "@angular/common";
 import {AuthService} from "../../services/auth.service";
 import {HeaderComponent} from "../../components/template/header/header.component";
 import {FooterComponent} from "../../components/template/footer/footer.component";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-sign-in',
@@ -37,7 +38,6 @@ export class SignInComponent {
 
   submitted  = false;
   errorMessage = '';
-  errorUsernamePassword = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
   }
@@ -45,14 +45,13 @@ export class SignInComponent {
 
   onSubmit() {
     this.submitted = true;
-    this.errorUsernamePassword = false;
     this.errorMessage = '';
     if (this.form.invalid) {
       if (this.form.get('username')?.errors?.['required']) {
         this.errorMessage += 'Le nom d\'utilisateur est requis. ';
       }
       if (this.form.get('username')?.errors?.['pattern']) {
-         this.errorMessage += 'Seules les lettres sont autorisées sans accents.';
+        this.errorMessage += 'Seules les lettres sont autorisées sans accents.';
       }
       if (this.form.get('username')?.errors?.['minlength']) {
         this.errorMessage += 'Le nom d\'utilisateur doit comporter au moins 6 caractères. ';
@@ -70,9 +69,34 @@ export class SignInComponent {
         this.errorMessage += 'Le mot de passe ne doit pas dépasser 25 caractères. ';
       }
       if (this.form.get('password')?.errors?.['pattern']) {
-      this.errorMessage += 'Il faut une majuscule, un chiffre, une lettre et un caractère spécial.';
+        this.errorMessage += 'Il faut une majuscule, un chiffre, une lettre et un caractère spécial.';
       }
-      else {
-    } }
+    }
+    else {
+      this.authService.onLogin(this.form.get('username')?.value, this.form.get('password')?.value).subscribe({
+        next: response => {
+          console.log(response);
+          this.authService.username = this.form.get('username')?.value;
+          this.authService.password = this.form.get('password')?.value;
+          this.router.navigate(['connexion/pin']);
+
+        },
+        error: err => {
+          this.sweetAlertMessage();
+        }
+      });
+    }
   }
+
+  sweetAlertMessage()
+  {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Erreur de login ou Password",
+      showConfirmButton: false,
+      timer: 3200
+    });
+  }
+
 }

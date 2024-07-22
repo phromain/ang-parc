@@ -50,6 +50,7 @@ export class ForgotUsernameComponent {
         // @ts-ignore
         this.authService.onForgotUsername(this.formEmail.value).subscribe({
           next: response => {
+            console.log("response " + response)
             this.sweetAlertMessage();
 
           },

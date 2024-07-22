@@ -1,8 +1,8 @@
-
-export let CURRENT_TOKEN = '';
+export let CURRENT_JWT = '';
 export const constants = {
-  CURRENT_TOKEN: 'CURRENT_TOKEN',
+  CURRENT_JWT: 'CURRENT_JWT',
 };
+
 
 const apiUrl = 'http://parc.localhost';
 const apiUrlLocal = 'http://localhost:8084';
@@ -20,7 +20,8 @@ export const endpoint = {
     validToken: `${apiUrlLocal}/auth/validate-reset-token`,
     resetPassword: `${apiUrlLocal}/auth/reset-password`,
     register: `${apiUrlLocal}/auth/register`,
-
+    login: `${apiUrlLocal}/auth/login`,
+    loginVerify: `${apiUrlLocal}/auth/login/verify`,
   },
 };
 

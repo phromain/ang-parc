@@ -5,7 +5,7 @@ import * as constants from "../constants/constants";
 @Injectable({
   providedIn: 'root'
 })
-export class TokenService {
+export class JwtService {
 
   isAuthentification: BehaviorSubject<boolean> = new  BehaviorSubject<boolean>(false);
 
@@ -14,18 +14,19 @@ export class TokenService {
   updateToken(status: boolean){
     this.isAuthentification.next(status);
   }
-  setToken(token:string){
+  setJwt(jwt:string){
     this.updateToken(true);
-    localStorage.setItem(constants.CURRENT_TOKEN, token);
+    localStorage.setItem(constants.CURRENT_JWT, jwt);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(constants.CURRENT_TOKEN) || null;
+  getJwt(): string | null {
+    return localStorage.getItem(constants.CURRENT_JWT) || null;
   }
 
-  removeToken(){
+  removeJwt(){
     this.updateToken(false);
-    return localStorage.removeItem(constants.CURRENT_TOKEN);
+    return localStorage.removeItem(constants.CURRENT_JWT);
   }
 
 }
+

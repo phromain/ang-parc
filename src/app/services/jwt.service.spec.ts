@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TokenService } from './token.service';
+import { TokenService } from './jwt.service';
 
 describe('TokenService', () => {
   let service: TokenService;
