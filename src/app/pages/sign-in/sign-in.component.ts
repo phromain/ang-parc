@@ -32,8 +32,8 @@ import Swal from "sweetalert2";
 export class SignInComponent {
 
   form: FormGroup = this.formBuilder.group({
-    username: ['', [Validators.required,Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(6), Validators.maxLength(18)]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(25),Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/)]],
+    username: ['', [Validators.required /*,Validators.pattern(/^[a-zA-Z]*$/), Validators.minLength(6), Validators.maxLength(18)*/]],
+    password: ['', [Validators.required,/* Validators.minLength(8), Validators.maxLength(25),Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/)*/]],
   })
 
   submitted  = false;
@@ -53,16 +53,16 @@ export class SignInComponent {
       if (this.form.get('username')?.errors?.['pattern']) {
         this.errorMessage += 'Seules les lettres sont autorisées sans accents.';
       }
-      if (this.form.get('username')?.errors?.['minlength']) {
+      /*if (this.form.get('username')?.errors?.['minlength']) {
         this.errorMessage += 'Le nom d\'utilisateur doit comporter au moins 6 caractères. ';
       }
       if (this.form.get('username')?.errors?.['maxlength']) {
         this.errorMessage += 'Le nom d\'utilisateur ne doit pas dépasser 18 caractères. ';
-      }
+      }*/
       if (this.form.get('password')?.errors?.['required']) {
         this.errorMessage += 'Le mot de passe est requis. ';
       }
-      if (this.form.get('password')?.errors?.['minlength']) {
+      /*if (this.form.get('password')?.errors?.['minlength']) {
         this.errorMessage += 'Le mot de passe doit comporter au moins 8 caractères. ';
       }
       if (this.form.get('password')?.errors?.['maxlength']) {
@@ -70,7 +70,7 @@ export class SignInComponent {
       }
       if (this.form.get('password')?.errors?.['pattern']) {
         this.errorMessage += 'Il faut une majuscule, un chiffre, une lettre et un caractère spécial.';
-      }
+      }*/
     }
     else {
       this.authService.onLogin(this.form.get('username')?.value, this.form.get('password')?.value).subscribe({

@@ -5,7 +5,6 @@ export const constants = {
 
 
 const apiUrl = 'http://parc.localhost';
-const apiUrlLocal = 'http://localhost:8084';
 
 
 export const endpoint = {
@@ -15,13 +14,13 @@ export const endpoint = {
     listTypes: `${apiUrl}/api/types`,
     detailParc: `${apiUrl}/api/parcs`,
 
-    forgotUsername: `${apiUrlLocal}/auth/forgot-username`,
-    forgotPassword: `${apiUrlLocal}/auth/forgot-password`,
-    validToken: `${apiUrlLocal}/auth/validate-reset-token`,
-    resetPassword: `${apiUrlLocal}/auth/reset-password`,
-    register: `${apiUrlLocal}/auth/register`,
-    login: `${apiUrlLocal}/auth/login`,
-    loginVerify: `${apiUrlLocal}/auth/login/verify`,
+    forgotUsername: `${apiUrl}/auth/forgot-username`,
+    forgotPassword: `${apiUrl}/auth/forgot-password`,
+    validToken: `${apiUrl}/auth/validate-reset-token`,
+    resetPassword: `${apiUrl}/auth/reset-password`,
+    register: `${apiUrl}/auth/register`,
+    login: `${apiUrl}/auth/login`,
+    loginVerify: `${apiUrl}/auth/login/verify`,
   },
 };
 
